@@ -1,4 +1,4 @@
-pokemon-team-builder
+Pokemon Team Builder
 ====================
 
 A Javascript team builder for the Pokemon X and Y games. Enter the Pokemon in your party and a table is populated with their weaknesses.
