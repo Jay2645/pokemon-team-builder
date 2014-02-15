@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Pokemon X&Y Team Builder</title>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/teamgen.js"></script>
+	<script type="text/javascript" src="http://play.pokemonshowdown.com/data/pokedex.js" ></script>
+	<script type="text/javascript" src="http://play.pokemonshowdown.com/data/typechart.js" ></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+	<div class="page-header">
+		<center><h1>Pokemon X&Y <small>Team Builder</small></h1></center>
+    </div>
+	<center><div id="output" class ="well" style="display: none;">
+		<div class="row-fluid">
+			<h3>Output</h3>
+			<table class="table table-bordered" id="outputTable">
+				<thead>
+					<tr id="typeList">
+						<th>Pokemon</th>
+					</tr>
+				</thead>
+				<tbody id="pokeBody">
+					<tr></tr>
+				</tbody>
+			</table>
+		</div>
+		<button id="resistButton" class="btn btn-primary" onclick="findWeakTypes();">Find Complimentary Teammates</button>
+	</div></center>
+	<div class="container">
+			<div style="width: 50%; height: 50%; float:left;" id="leftcolumn">
+				<label>Input Pokemon</label>
+				<input type="text" id="poke0" placeholder="Pokemon name" onkeydown="if (event.keyCode == 13) showPokemon();" required autofocus>
+				<label id="poke0Levitate" style="display: none;"><input type="checkbox" id="poke0LevitateBox" onclick="showPokemon();"> Levitate</label>
+				<label id="poke0FlashFire" style="display: none;"><input type="checkbox" id="poke0FlashFireBox" onclick="showPokemon();"> Flash Fire</label>
+				<label id="poke0SapSipper" style="display: none;"><input type="checkbox" id="poke0SapSipperBox" onclick="showPokemon();"> Sap Sipper</label>
+				<label id="poke0WonderGuard" style="display: none;"><input type="checkbox" id="poke0WonderGuardBox" onclick="showPokemon();"> Wonder Guard</label>
+				<label id="poke0DrySkin" style="display: none;"><input type="checkbox" id="poke0DrySkinBox" onclick="showPokemon();"> Dry Skin</label>
+				<label id="poke0Heatproof" style="display: none;"><input type="checkbox" id="poke0HeatproofBox" onclick="showPokemon();"> Heatproof</label>
+				<label id="poke0ThickFat" style="display: none;"><input type="checkbox" id="poke0ThickFatBox" onclick="showPokemon();"> Thick Fat</label>
+				<label id="poke0WaterAbsorb" style="display: none;"><input type="checkbox" id="poke0WaterAbsorbBox" onclick="showPokemon();"> Water Absorb</label>
+				</p>
+				<input type="text" id="poke1" placeholder="Pokemon name" onkeydown="if (event.keyCode == 13) showPokemon();">
+				<label id="poke1Levitate" style="display: none;"><input type="checkbox" id="poke1LevitateBox" onclick="showPokemon();"> Levitate</label>
+				<label id="poke1FlashFire" style="display: none;"><input type="checkbox" id="poke1FlashFireBox" onclick="showPokemon();"> Flash Fire</label>
+				<label id="poke1SapSipper" style="display: none;"><input type="checkbox" id="poke1SapSipperBox" onclick="showPokemon();"> Sap Sipper</label>
+				<label id="poke1WonderGuard" style="display: none;"><input type="checkbox" id="poke1WonderGuardBox" onclick="showPokemon();"> Wonder Guard</label>
+				<label id="poke1DrySkin" style="display: none;"><input type="checkbox" id="poke1DrySkinBox" onclick="showPokemon();"> Dry Skin</label>
+				<label id="poke1Heatproof" style="display: none;"><input type="checkbox" id="poke1HeatproofBox" onclick="showPokemon();"> Heatproof</label>
+				<label id="poke1ThickFat" style="display: none;"><input type="checkbox" id="poke1ThickFatBox" onclick="showPokemon();"> Thick Fat</label>
+				<label id="poke1WaterAbsorb" style="display: none;"><input type="checkbox" id="poke1WaterAbsorbBox" onclick="showPokemon();"> Water Absorb</label>
+				</p>
+				<input type="text" id="poke2" placeholder="Pokemon name" onkeydown="if (event.keyCode == 13) showPokemon();">
+				<label id="poke2Levitate" style="display: none;"><input type="checkbox" id="poke2LevitateBox" onclick="showPokemon();"> Levitate</label>
+				<label id="poke2FlashFire" style="display: none;"><input type="checkbox" id="poke2FlashFireBox" onclick="showPokemon();"> Flash Fire</label>
+				<label id="poke2SapSipper" style="display: none;"><input type="checkbox" id="poke2SapSipperBox" onclick="showPokemon();"> Sap Sipper</label>
+				<label id="poke2WonderGuard" style="display: none;"><input type="checkbox" id="poke2WonderGuardBox" onclick="showPokemon();"> Wonder Guard</label>
+				<label id="poke2DrySkin" style="display: none;"><input type="checkbox" id="poke2DrySkinBox" onclick="showPokemon();"> Dry Skin</label>
+				<label id="poke2Heatproof" style="display: none;"><input type="checkbox" id="poke2HeatproofBox" onclick="showPokemon();"> Heatproof</label>
+				<label id="poke2ThickFat" style="display: none;"><input type="checkbox" id="poke2ThickFatBox" onclick="showPokemon();"> Thick Fat</label>
+				<label id="poke2WaterAbsorb" style="display: none;"><input type="checkbox" id="poke2WaterAbsorbBox" onclick="showPokemon();"> Water Absorb</label>
+				</p>
+				<input type="text" id="poke3" placeholder="Pokemon name" onkeydown="if (event.keyCode == 13) showPokemon();">
+				<label id="poke3Levitate" style="display: none;"><input type="checkbox" id="poke3LevitateBox" onclick="showPokemon();"> Levitate</label>
+				<label id="poke3FlashFire" style="display: none;"><input type="checkbox" id="poke3FlashFireBox" onclick="showPokemon();"> Flash Fire</label>
+				<label id="poke3SapSipper" style="display: none;"><input type="checkbox" id="poke3SapSipperBox" onclick="showPokemon();"> Sap Sipper</label>
+				<label id="poke3WonderGuard" style="display: none;"><input type="checkbox" id="poke3WonderGuardBox" onclick="showPokemon();"> Wonder Guard</label>
+				<label id="poke3DrySkin" style="display: none;"><input type="checkbox" id="poke3DrySkinBox" onclick="showPokemon();"> Dry Skin</label>
+				<label id="poke3Heatproof" style="display: none;"><input type="checkbox" id="poke3HeatproofBox" onclick="showPokemon();"> Heatproof</label>
+				<label id="poke3ThickFat" style="display: none;"><input type="checkbox" id="poke3ThickFatBox" onclick="showPokemon();"> Thick Fat</label>
+				<label id="poke3WaterAbsorb" style="display: none;"><input type="checkbox" id="poke3WaterAbsorbBox" onclick="showPokemon();"> Water Absorb</label>
+				</p>
+				<input type="text" id="poke4" placeholder="Pokemon name" onkeydown="if (event.keyCode == 13) showPokemon();">
+				<label id="poke4Levitate" style="display: none;"><input type="checkbox" id="poke4LevitateBox" onclick="showPokemon();"> Levitate</label>
+				<label id="poke4FlashFire" style="display: none;"><input type="checkbox" id="poke4FlashFireBox" onclick="showPokemon();"> Flash Fire</label>
+				<label id="poke4SapSipper" style="display: none;"><input type="checkbox" id="poke4SapSipperBox" onclick="showPokemon();"> Sap Sipper</label>
+				<label id="poke4WonderGuard" style="display: none;"><input type="checkbox" id="poke0WonderGuardBox" onclick="showPokemon();"> Wonder Guard</label>
+				<label id="poke4DrySkin" style="display: none;"><input type="checkbox" id="poke4DrySkinBox" onclick="showPokemon();"> Dry Skin</label>
+				<label id="poke4Heatproof" style="display: none;"><input type="checkbox" id="poke4HeatproofBox" onclick="showPokemon();"> Heatproof</label>
+				<label id="poke4ThickFat" style="display: none;"><input type="checkbox" id="poke4ThickFatBox" onclick="showPokemon();"> Thick Fat</label>
+				<label id="poke4WaterAbsorb" style="display: none;"><input type="checkbox" id="poke4WaterAbsorbBox" onclick="showPokemon();"> Water Absorb</label>
+				</p>
+				<input type="text" id="poke5" placeholder="Pokemon name" onkeydown="if (event.keyCode == 13) showPokemon();">
+				<label id="poke5Levitate" style="display: none;"><input type="checkbox" id="poke5LevitateBox" onclick="showPokemon();"> Levitate</label>
+				<label id="poke5FlashFire" style="display: none;"><input type="checkbox" id="poke5FlashFireBox" onclick="showPokemon();"> Flash Fire</label>
+				<label id="poke5SapSipper" style="display: none;"><input type="checkbox" id="poke5SapSipperBox" onclick="showPokemon();"> Sap Sipper</label>
+				<label id="poke5WonderGuard" style="display: none;"><input type="checkbox" id="poke5WonderGuardBox" onclick="showPokemon();"> Wonder Guard</label>
+				<label id="poke5DrySkin" style="display: none;"><input type="checkbox" id="poke5DrySkinBox" onclick="showPokemon();"> Dry Skin</label>
+				<label id="poke5Heatproof" style="display: none;"><input type="checkbox" id="poke5HeatproofBox" onclick="showPokemon();"> Heatproof</label>
+				<label id="poke5ThickFat" style="display: none;"><input type="checkbox" id="poke5ThickFatBox" onclick="showPokemon();"> Thick Fat</label>
+				<label id="poke5WaterAbsorb" style="display: none;"><input type="checkbox" id="poke5WaterAbsorbBox" onclick="showPokemon();"> Water Absorb</label>
+				</p>
+				<button id="createButton" type="submit" class="btn btn-primary" onclick="showPokemon();">Calculate Weaknesses</button>
+			</div>
+			<div style="width: 50%; height: 50%; float:right;" id="possibleMons">
+			</div>
+	</div>
+</body>
